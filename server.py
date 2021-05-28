@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template('popup.html')
+  return render_template('model.html')
 
 @app.route('/my-link/')
 def my_link():

@@ -4,13 +4,13 @@
 }
 
 .clock {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, .8);
+  width: 80px;
+  height: 80px;
+  background-color: #FCECEC;
   border-radius: 50%;
   border: 2px solid black;
   position: relative;
-  margin-left: 210px;
+  margin-left: 100px;
   margin-top: 6px;
 }
 
