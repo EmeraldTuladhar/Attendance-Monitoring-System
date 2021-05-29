@@ -3,6 +3,7 @@ import numpy as np
 import face_recognition
 import os
 from datetime import datetime
+from more_itertools import unique_everseen
 
 path = 'ImagesAttendance'
 images = []
@@ -67,27 +68,30 @@ while True:
         #print(faceDis)
 
     #Smallest value of faceDis is the closest match
-    matchIndex = np.argmin(faceDis)
+        matchIndex = np.argmin(faceDis)
     #if matchIndex.any() > 0.5:
         #print("Unknown")
     #print(faceDis)
 
-    if matches[matchIndex]:
-        name = classNames[matchIndex]
+        if matches[matchIndex]:
+            name = classNames[matchIndex]
         #print(name)
-
         #To create rectangular bounding box
-        y1,x2,y2,x1 = faceLoc
-        y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
-        cv2.rectangle(img,(x1,y1),(x2,y2),(255,255,255),2)
-        cv2.rectangle(img, (x1, y2-35), (x2, y2), (255, 255, 255), cv2.FILLED)
-        cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(0,0,255),2)
+            y1,x2,y2,x1 = faceLoc
+            y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
+            cv2.rectangle(img,(x1,y1),(x2,y2),(255,255,255),2)
+            cv2.rectangle(img, (x1, y2-35), (x2, y2), (255, 255, 255), cv2.FILLED)
+            cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(0,0,255),2)
+            markAttendance(name)
+
+        with open('Attendance.csv', 'r') as f, open('FinalAttendance.csv', 'w') as out_file:
+            out_file.writelines(unique_everseen(f))
         #marking real time attendance
         #markAttendance(name)
 
     cv2.imshow('Webcam',img)
     cv2.waitKey(1)
-    markAttendance(name)
+
 
 
 

@@ -1,13 +1,15 @@
+import Attendance
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
   return render_template('model.html')
 
-@app.route('/my-link/')
-def my_link():
-  print ('I got clicked!')
+@app.route('/attendance/')
+def attendance():
+  execfile("Attendance.py")
 
   return 'Click.'
 
