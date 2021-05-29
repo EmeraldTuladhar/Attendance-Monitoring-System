@@ -6,9 +6,15 @@
   "icons": {
     "128": "logo_128.png"
   },
+  "background": {
+    "page": "popup.html"
+  },
+  "minimum_chrome_version": "46",
   "browser_action": {
     "default_icon": "logo.png",
     "default_popup": "popup.html"
   },
-  "permissions": ["activeTab","tabs"]
+  "permissions": ["activeTab","tabs"],
+  "content_security_policy": "script-src 'self'  'unsafe-hashes' 'unsafe-inline' 'sha256-HCpiwhiyuC3Fsaafoyj5NWlOS2FBOIt7eXhIUJZ4bX0='"
+
 }
